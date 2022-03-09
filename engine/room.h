@@ -1,22 +1,23 @@
-#include state.h
+#include <state.h>
+#include <token.h>
 
 class Room 
 { 
 private: 
-        string name;
+    string name;
 
 	//Vector<string> description; 
 
 	int room_state = 0; //the "current" state of the room, used in internal logic
 	void print_dirs()
 	{
-	        if &r_north != NULL
+		if &r_north != NULL
 		cout << "You can go ";
 		//?N, ?or ?E, ?or ?S, ?or ?W.
 	}
 	
 	string default_no  = "You cannot go that way."
-	catch_wrong_room(State s)
+	void catch_wrong_room(State s)
 	{
 	        if s.current_room != *this
 	        {
@@ -25,11 +26,19 @@ private:
 	        }
 	}
 	
+	//used by the go_X functions
 	Room &r_north = NULL;
 	Room &r_east = NULL;
 	Room &r_south = NULL;
 	Room &r_west = NULL;
 	Room &r_other = NULL;
+	
+	//used by RoomContainer for construct()
+	const string init_north = NULL;
+	const string init_east = NULL;
+	const string init_south = NULL;
+	const string init_west = NULL;
+	const string init_other = NULL;
 
 public: 
 	Room Room(); //default room constructor 
@@ -38,31 +47,33 @@ public:
 	: name(n)
 	{}
 	
+	string get_name() { return name; }
+	
 	//Sets the new current room; 0 indicates you can't go that way
 	//These functions should only be called by the parser
 	//will want to overload these for most rooms, if something interesting happens in the room transition.
 	virtual char go_N(State s) 
 	{ 
 	        catch_wrong_room(s); 
-	        if can_N { s.current_room = r_north; return 1; }
+	        if can_N { s.update_room(r_north); return 1; }
 	        else { cout << default_no; return 0; }
 	}
 	virtual char go_E(State s) 
 	{ 
 	        catch_wrong_room(s); 
-	        if can_E { s.current_room = r_east; return 1; }
+	        if can_E { s.update_room(r_east); return 1; }
 	        else { cout << default_no; return 0; }
 	}
 	virtual char go_S(State s) 
 	{ 
 	        catch_wrong_room(s); 
-	        if can_S { s.current_room = r_south; return 1; }
+	        if can_S { s.update_room(r_south); return 1; }
 	        else { cout << default_no; return 0; }
 	}
 	virtual char go_W(State s) 
 	{ 
 	        catch_wrong_room(s); 
-	        if can_W { s.current_room = r_west; return 1; }
+	        if can_W { s.update_room(r_west); return 1; }
 	        else { cout << default_no; return 0; }
 	}
 	
@@ -79,17 +90,17 @@ public:
 	
 	//returns nonzero if it caught something
 	//this should be called by the derived class's parser_catch
-	virtual int parser_catch(State s) { return 0; } 
+	virtual int parser_catch(State s, vector<Token> in) { return 0; } 
 
-        //set during 
-        void set_adj(Room &north, Room &east, Room &south, room &west, room &other)
-        {
-                r_north = north;
-                r_east = east;
-                r_south = south;
-                r_west = west;
-                r_other = other;
-        }
+	//set during RoomContainer::construct()
+	void set_adj(Room &north, Room &east, Room &south, room &west, room &other)
+	{
+		r_north = north;
+		r_east = east;
+		r_south = south;
+		r_west = west;
+		r_other = other;
+	}
 }; 
 
 

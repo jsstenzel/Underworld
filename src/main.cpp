@@ -2,11 +2,11 @@ int main()
 { 
 //setup & stuff with loading the save file 
 
- 
-	while(State.game_loop) 
+
+	state.current_room->print_room();
+	while(state.game_loop) 
 	{ 
-		State.current_room.print_room(); 
-		parser(State); 
+		parser(state); 
 	} 
  
 

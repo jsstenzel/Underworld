@@ -1,26 +1,46 @@
 #import <token.h>
+//do all of this with virtual functions, implement with game_parser
 
-void parser(string input)
-{ 
-//get input from user
+class Parser
+{
+private:
+	bool parse_found = false;
+	
+	//run before room parser; commands common to all rooms
+	virtual bool parse_common(State s, vector<Token> in);
+	
+	//run after room parser; commands default to all rooms
+	virtual void parse_default(State s, vector<Token> in);
+	
+	//commands to run at the end of each game loop
+	virtual void cleanup(State s);
+	
+public:
 
-//convert to tokens
-Vector<Token> in = tokenize_input(input);
+	virtual void 
 
-//switch over common commands
+	void parse(State s)
+	{ 
+		//get input from user
+		cout << endl << "> ";
+		cin >> input;
 
-//let the room parser catch first
+		//convert to tokens
+		vector<Token> in = tokenize_input(input);
 
-//switch over default commands true in any room
+		//switch over common commands
+		parse_result = self->parse_common(s, in);
 
-//Finally, reduce menos by one if the command wasn't a meta-command, like inventory or save or something
+		//let the room parser catch first
+		if !parse_result { parse_result = s.current_room.parser_catch(); }
+
+		//switch over default commands true in any room
+		//include handling for unknown commands
+		if !parse_result { self->parse_default(s, in); }
+
+		self->cleanup(s);
+	}
 
 }; 
 
 
-Vector<Token> tokenize_input(string input) 
-{
-	
-	
-	
-} 

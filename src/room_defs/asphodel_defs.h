@@ -1,4 +1,4 @@
-#include room.h
+#include <room.h>
 
 class RoomNull : Room 
 { 
@@ -17,6 +17,11 @@ public:
 
 class RoomLetheCave : Room 
 { 
+private:
+	const string init_north = "Lethe Mouth";
+	const string init_east = "Threshold";
+	const string init_south = "Mnemosyne Cave";
+
 public: 
 	RoomLetheCave::RoomLetheCave()
 	: Room("Lethe Cave") //does this work??

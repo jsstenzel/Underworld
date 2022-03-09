@@ -67,7 +67,7 @@ bool ConvoChoice(string choice1, string choice2)
 	while(choosing)
 	{
 		//receive choice
-		cout << ">";
+		cout << "> ";
 		cin >> choice;
 		//convert to all lowercase
 		

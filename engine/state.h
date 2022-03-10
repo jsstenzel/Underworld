@@ -1,4 +1,6 @@
-#import <room.h>
+#ifndef STATE_H
+#define STATE_H
+#include <engine/room.h>
 
 class State
 {
@@ -19,3 +21,4 @@ public:
 	
 };
 
+#endif

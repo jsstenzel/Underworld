@@ -1,5 +1,8 @@
-#include <state.h>
-#include <token.h>
+#ifndef ROOM_H
+#define ROOM_H
+
+#include <engine/state.h>
+#include <engine/token.h>
 
 class Room 
 { 
@@ -119,3 +122,5 @@ class RoomContainer
         //return a room ref based on its name
         Room& get(string name);
 };
+
+#endif

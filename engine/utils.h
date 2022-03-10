@@ -1,3 +1,6 @@
+#ifndef UTILS_H
+#define UTILS_H
+
 void tprint(string str)
 {
 	////first, format the string so that the max width is 80 characters and words aren't split on a line
@@ -41,3 +44,5 @@ void cprint(string name, string str)
 	//lastly, print two endlines to start the next line or continue other text.
 	cout << endl << endl;
 }
+
+#endif

@@ -1,6 +1,9 @@
-#import <utils.h>
-#import <parser.h>
-#import <room.h>
+#ifndef COMBAT_PARSER_H
+#define COMBAT_PARSER_H
+
+#import <engine/utils.h>
+#import <engine/parser.h>
+#import <engine/room.h>
 
 //A combat is a smaller game loop embedded in the larger one
 //It uses its own parser, the CombatParser, with a restricted set of commands

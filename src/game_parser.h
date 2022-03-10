@@ -1,5 +1,8 @@
-#import <token.h>
-#import <token.h>
+#ifndef GAME_PARSER_H
+#define GAME_PARSER_H
+
+#include <engine/parser.h>
+#include <engine/token.h>
 //do all of this with virtual functions, implement with game_parser
 
 class GameParser : Parser
@@ -64,3 +67,5 @@ private:
 	}
 
 };
+
+#endif

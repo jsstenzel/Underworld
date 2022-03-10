@@ -1,4 +1,7 @@
-#import <utils.h>
+#ifnded CONVERSATION_H
+#define CONVERSATION_H
+
+#import <engine/utils.h>
 
 //A conversation is a binary tree of [dialog and logic]
 //logic can be simple, like True, or it can be state-dependent, like has_torch
@@ -209,3 +212,5 @@ RoomOdysseusShip::parser_catch(vector<Token> ins)
 	}
 }
 */
+
+#endif

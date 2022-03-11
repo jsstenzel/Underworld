@@ -2,7 +2,9 @@
 #define TOKEN_H
 
 #include <string>
+#include <vector>
 #define string std::string
+#define vector std::vector
 
 //define the full enum in implementation
 enum class Tk;

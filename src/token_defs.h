@@ -5,7 +5,7 @@
 #define string std::string
 
 
-enum class Tk;
+enum class Tk
 {
 	Null = 0,
 	TYPESPECIAL,
@@ -19,7 +19,7 @@ enum class Tk;
 	Take,
 	TYPECONCEPT,
 	North,
-	East
+	East,
 	South,
 	West,
 	TYPEITEM,
@@ -35,8 +35,9 @@ enum class Tk;
 	Lethe,
 	Wall,
 	Floor,
-	Ceiling
-}
+	Ceiling,
+	LAST
+};
 
 enum class TkType
 {
@@ -46,5 +47,6 @@ enum class TkType
 	Concept,
 	Item,
 	Person,
-	Scenery
-}
+	Scenery,
+	LAST
+};

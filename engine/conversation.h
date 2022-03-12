@@ -2,8 +2,9 @@
 #define CONVERSATION_H
 
 #include <engine/utils.h>
-#include <string>
-using namespace std::string
+#include <str>
+#define str std::str
+#define vec std::vector
 
 //A conversation is a binary tree of [dialog and logic]
 //logic can be simple, like True, or it can be state-dependent, like has_torch
@@ -15,9 +16,9 @@ using namespace std::string
 struct ConvoNode {
 private:
 	//the speaker that is cprinted when this node is reached
-	string speaker;
+	str speaker;
 	//the line that is cprinted when this node is reached
-	string line;
+	str line;
 	//whether the tree proceeds left or right; expects a boolean or a ConvoChoice
 	bool logic;
  
@@ -26,11 +27,11 @@ protected:
 	struct ConvoNode* right;
 	
 	//these are used by the Conversation executer if theyre nonempty
-	string choice1 = "";
-	string choice2 = "";
+	str choice1 = "";
+	str choice2 = "";
 
 	//this constructor is used only by add_node
-	ConvoNode(string set_speak, string set_line, bool set_logic)
+	ConvoNode(str set_speak, str set_line, bool set_logic)
 	{
 		speaker = set_speak, 
 		line = set_line;
@@ -43,7 +44,7 @@ protected:
 	}
 	
 	//This constructor is used only by add_choice
-	ConvoNode(string set_speak, string set_line, string c1, string c2)
+	ConvoNode(str set_speak, str set_line, str c1, str c2)
 	{
 		speaker = set_speak, 
 		line = set_line;
@@ -57,23 +58,23 @@ protected:
 		right = NULL;
 	}
 	
-	string get_speak() { return speaker; }
-	string get_line()  { return line; }
-	string get_logic() { return logic; }
-	string get_1()	   { return choice1; }
-	string get_2()	   { return choice2; }
+	str get_speak() { return speaker; }
+	str get_line()  { return line; }
+	str get_logic() { return logic; }
+	str get_1()	   { return choice1; }
+	str get_2()	   { return choice2; }
 };
 
-bool ConvoChoice(string choice1, string choice2)
+bool ConvoChoice(str choice1, str choice2)
 {
-	//convert both strings to all lowercase
+	//convert both strs to all lowercase
 	
 	bool choosing = true;
 	while(choosing)
 	{
 		//receive choice
 		tprint("> ");
-		cin >> choice;
+		std::cin >> choice;
 		//convert to all lowercase
 		
 		if choice == choice1 return false; //go left
@@ -94,7 +95,7 @@ public:
 	//Add a node to this conversation, with branching based on boolean
 	//Returns the node you just added
 	//Use that to add additional nodes
-	ConvoNode* add_node(ConvoNode* parent, string speaker, string line, LeftorRight = "R", bool logic = true)
+	ConvoNode* add_node(ConvoNode* parent, str speaker, str line, LeftorRight = "R", bool logic = true)
 	{
 		if root == NULL and parent == NULL
 		{
@@ -129,7 +130,7 @@ public:
 	
 	//Add a node to this conversation, with branching based on binary choice
 	//to actually add the two results of these choices, use the returned pointer
-	ConvoNode* add_choice(ConvoNode& parent, string speaker, string line, string choice1, string choice2, LeftorRight = "R")
+	ConvoNode* add_choice(ConvoNode& parent, str speaker, str line, str choice1, str choice2, LeftorRight = "R")
 	{
 		if root == NULL
 		{

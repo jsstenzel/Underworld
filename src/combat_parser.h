@@ -5,6 +5,9 @@
 #import <engine/parser.h>
 #import <engine/room.h>
 
+#include <string>
+#define str std::string
+
 //A combat is a smaller game loop embedded in the larger one
 //It uses its own parser, the CombatParser, with a restricted set of commands
 //A combat goes back and forth, you and the enemy taking actions and updating the game state,
@@ -17,7 +20,7 @@ public:
 	: Room("")
 	
 	//expose name setting
-	void set_name(string newname) { this->name = newname; }
+	void set_name(str newname) { this->name = newname; }
 
 	void print_room(State s) 
 	{ 

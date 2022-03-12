@@ -1,9 +1,6 @@
 //implement specific tokens
 #include <engine/token.h>
 
-#include <string>
-#define string std::string
-
 
 enum class Tk
 {

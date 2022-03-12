@@ -4,10 +4,12 @@
 
 #include <engine/room.h>
 
-#include <string>
 //#include everything in room_defs
 
-
+#include <string>
+#include <vector>
+#define str std::string
+#define vec std::vector
 
 
 void RoomContainer::initialize()
@@ -52,9 +54,9 @@ void RoomContainer::construct()
 }
 
 //return a room object based on its unique name
-Room& RoomContainer::find(string search_name)
+Room& RoomContainer::find(str search_name)
 {
-	if search_name == NULL {return NULL;}
+	if (search_name == NULL) {return NULL;}
 	
 	//look for and return room ref
         

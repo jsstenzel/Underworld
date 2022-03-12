@@ -1,24 +1,20 @@
 //implement specific tokens
+#include <engine/token.h>
 #include <src/token_defs.h>
 
 #include <string>
+#include <vector>
 #include <sstream>
-#define string std::string
+#define str std::string
+#define vec std::vector
 
-
-void main()
-{
-	vector<Tk> in = tokenize_string("go north");
-}
-
-
-vector<Tk> tokenize_string(string input)
+vec<Tk> tokenize_string(str input)
 {
 	//break string into space-delimited words
 	std::stringstream ss;
 	
 	//map words to tokens, handling synonyms
-	vector<Tk> in;
+	vec<Tk> in;
 	
 	//map unknown words to Tk:Null / Token:Null
 	

@@ -1,12 +1,12 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <cstdio.h>
+#include <iostream>
 #include <string>
-using namespace std::string
+#define str std::string
 
 //formatted terminal printing of one string
-void tprint_1(string str)
+void tprint_1(str out)
 {
 	////first, format the string so that the max width is 80 characters and words aren't split on a line
 	
@@ -21,16 +21,17 @@ void tprint_1(string str)
 
 	//now, print the formatted string.
 
-	//lastly, print an endline
-	cout << endl;
+	//lastly, print an std::endline
+	std::cout << std::endl;
 }
 
 //nice conversation-formatted terminal printing of one string
-void cprint_1(string name, string str)
+void cprint_1(str name, str out)
 {
 	//convert name to all caps
+	str NAME = name;
 	
-	cout << NAME << endl;
+	std::cout << NAME << std::endl;
 	
 	////format text for a 72 character space, giving an 8 character indent
 	
@@ -46,8 +47,8 @@ void cprint_1(string name, string str)
 
 	//now, print the formatted string.
 
-	//lastly, print two endlines to start the next line or continue other text.
-	cout << endl << endl;
+	//lastly, print two std::endlines to start the next line or continue other text.
+	std::cout << std::endl << std::endl;
 }
 
 //the addToStream function helps us take arbitrary lengths of string input and concatenate them behind the scenes
@@ -72,7 +73,7 @@ void tprint(Args&&... a_args)
 
 //nice conversation-formatted terminal printing of one string
 template<typename... Args>
-void cprint(string name, Args&&... a_args)
+void cprint(str name, Args&&... a_args)
 {
     std::ostringstream s;
     addToStream(s, std::forward<Args>(a_args)...);

@@ -1,7 +1,9 @@
 #ifnded CONVERSATION_H
 #define CONVERSATION_H
 
-#import <engine/utils.h>
+#include <engine/utils.h>
+#include <string>
+using namespace std::string
 
 //A conversation is a binary tree of [dialog and logic]
 //logic can be simple, like True, or it can be state-dependent, like has_torch
@@ -70,13 +72,13 @@ bool ConvoChoice(string choice1, string choice2)
 	while(choosing)
 	{
 		//receive choice
-		cout << "> ";
+		tprint("> ");
 		cin >> choice;
 		//convert to all lowercase
 		
 		if choice == choice1 return false; //go left
 		else if choice == choice2 return true; // go right
-		else cout << "(Choose '" << choice1 << "' or '" << choice2 << "'." << endl;
+		else tprint("(Choose '", choice1, "' or '", "'.")
 	}
 }
 

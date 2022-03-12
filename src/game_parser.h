@@ -3,12 +3,13 @@
 
 #include <engine/parser.h>
 #include <engine/token.h>
+#include <engine/utils.h>
 //do all of this with virtual functions, implement with game_parser
 
 class GameParser : Parser
 {
 private:
-	bool parse_common(State s, vector<Token> in)
+	bool parse_common(State &s, vector<Token> in)
 	{
 		//SAVE
 		
@@ -49,7 +50,7 @@ private:
 		}
 	}
 	
-	void parse_default(State s, vector<Token> in)
+	void parse_default(State &s, vector<Token> in)
 	{
 		/////Handle default commands
 		
@@ -60,7 +61,7 @@ private:
 		if in[0] == tLook { tprint("You don't see anything like that around here."); return; }
 	}
 	
-	void cleanup(State s)
+	void cleanup(State &s)
 	{
 		//Reduce menos by one if command wasn't a meta-command, like inventory or save or something
 

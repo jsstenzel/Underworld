@@ -3,6 +3,8 @@
 //maybe put them all in a room container class that lets you do searches and stuff
 
 #include <engine/room.h>
+
+#include <string>
 //#include everything in room_defs
 
 
@@ -50,9 +52,9 @@ void RoomContainer::construct()
 }
 
 //return a room object based on its unique name
-Room& RoomContainer::find(string name)
+Room& RoomContainer::find(string search_name)
 {
-	if name == NULL {return NULL;}
+	if search_name == NULL {return NULL;}
 	
 	//look for and return room ref
         

@@ -30,8 +30,7 @@ public:
 	{ 
 		if in[0] == tLook and (in[1] == tNull or in[1] == tRoom)
 		{ 
-			outstr = "You are in " + name + ", but there is not time to look around! You are in combat!";
-			tprint(outstr);
+			tprint("You are in ", name, ", but there is not time to look around! You are in combat!");
 			return true;
 		}
 		return false;

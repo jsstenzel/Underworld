@@ -5,18 +5,20 @@
 class State
 {
 private:
-	Room& current_room;
+	&Room curr_room;
 	
 public:
-	Room& current_room() { return current_room; }
+	State State(); //default room constructor 
+
+	&Room current_room() { return curr_room; }
 	
-	Room& update_room(Room& newroom)
+	&Room update_room(&Room newroom)
 	{
-		this->current_room = newroom;
+		this->curr_room = newroom;
 		
 		//anytime a room is updated, it print_room should be called, if never else
-		this->current_room->print_room();
-		return current_room;
+		this->curr_room->print_room();
+		return curr_room;
 	}
 	
 };

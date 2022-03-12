@@ -1,12 +1,13 @@
 #include <src/game_state.h>
 #include <src/game_parser.h>
+#include <utils.h>
 
 
 int main() 
 { 
 	//setup & stuff with loading the save file 
-	State state;
-	Game
+	GameState state;
+	GameParser parser;
 
 	state.current_room->print_room();
 	while(state.game_loop) 

@@ -13,31 +13,31 @@ bool GameParser::parse_common(State &s, vec<Tk> in)
 	//STATS (and inventory)
 	
 	//Examine (room)
-	if (in[0] == Tk::Look && (in[1] == Tk::Null || in[1] == Tk::Room))
+	if (check(in, Tk::Look) || check(in, Tk::Look, Tk::Room))
 	{ 
 		s.current_room()->print_room(s); return true;
 	}
 	
 	//N
-	if (in[0] == Tk::North || (in[0] == Tk::Go && in[1] == Tk::North))
+	if (check(in, Tk::North) || check(in, Tk::Go, Tk::North))
 	{ 
 		s.current_room()->go_N(s); return true;
 	}
 	
 	//E
-	if (in[0] == Tk::East || (in[0] == Tk::Go && in[1] == Tk::East))
+	if (check(in, Tk::East) || check(in, Tk::Go, Tk::East))
 	{ 
 		s.current_room()->go_E(s); return true;
 	}
 	
 	//S
-	if (in[0] == Tk::South || (in[0] == Tk::Go && in[1] == Tk::South))
+	if (check(in, Tk::South) || check(in, Tk::Go, Tk::South))
 	{ 
 		s.current_room()->go_S(s); return true;
 	}
 	
 	//W
-	if (in[0] == Tk::West || (in[0] == Tk::Go && in[1] == Tk::West))
+	if (check(in, Tk::West) || check(in, Tk::Go, Tk::West))
 	{ 
 		s.current_room()->go_W(s); return true;
 	}
@@ -49,9 +49,9 @@ void GameParser::parse_default(State &s, vec<Tk> in)
 	
 	
 	/////Handle unknown commands for the rest of the function
-	if (in[0] == Tk::Go) { tprint("You don't know how to go there."); return; }
-	if (in[0] == Tk::Take) { tprint("You don't know how to take that."); return; }
-	if (in[0] == Tk::Look) { tprint("You don't see anything like that around here."); return; }
+	if (check(in,Tk::Go)) { tprint("You don't know how to go there."); return; }
+	if (check(in,Tk::Take)) { tprint("You don't know how to take that."); return; }
+	if (check(in,Tk::Look)) { tprint("You don't see anything like that around here."); return; }
 }
 
 void GameParser::cleanup(State &s)

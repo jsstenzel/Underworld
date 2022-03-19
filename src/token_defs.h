@@ -4,7 +4,7 @@
 
 enum class Tk
 {
-	Null = 0,
+	Null = 0, //an empty token, semantically empty
 	TYPESPECIAL,
 	Stats,
 	Save,
@@ -14,7 +14,10 @@ enum class Tk
 	Go,
 	Look,
 	Take,
+	Speak,
+	Attack,
 	TYPECONCEPT,
+	Nothing,
 	North,
 	East,
 	South,
@@ -29,6 +32,7 @@ enum class Tk
 	Erinye,
 	Charon,
 	TYPESCENERY,
+	Room,
 	Lethe,
 	Wall,
 	Floor,

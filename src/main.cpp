@@ -12,7 +12,7 @@ int main()
 	state.current_room->print_room();
 	while(state.game_loop) 
 	{ 
-		parser(state); 
+		parser.parse(state); 
 	} 
  
 

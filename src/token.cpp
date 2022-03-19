@@ -16,7 +16,8 @@ vec<Tk> tokenize_string(str input)
 	//map words to tokens, handling synonyms
 	vec<Tk> in;
 	
-	//map unknown words to Tk:Null / Token:Null
+	//map unknown words to Tk::Null
+	//and fill the end with a couple Tk::Null's 
 	
 	
 	return in;

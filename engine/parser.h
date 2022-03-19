@@ -3,7 +3,9 @@
 
 #include <engine/token.h>
 #include <engine/state.h>
+#include <engine/utils.h>
 
+#include <iostream>
 #include <string>
 #include <vector>
 #define str std::string
@@ -27,28 +29,7 @@ private:
 public:
 	Parser();
 
-	void parse(State &s)
-	{ 
-		//get input from user
-		tprint("> ");
-		std::cin >> input;
-
-		//convert to tokens
-		vec<Tk> in = tokenize_input(input);
-
-		//switch over common commands
-		parse_result = self->parse_common(s, in);
-
-		//let the room parser catch first
-		if !parse_result { parse_result = s.current_room.parser_catch(); }
-
-		//switch over default commands true in any room
-		//include handling for unknown commands
-		if !parse_result { self->parse_default(s, in); }
-
-		self->cleanup(s);
-	}
-
+	void parse(State &s);
 }; 
 
 

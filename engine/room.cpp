@@ -12,21 +12,23 @@
 #define str std::string
 #define vec std::vector
 
-void Room::print_dirs(State &s)
+void print_dirs(State &s)
 {
+	bool canN=can_N(s); bool canE=can_E(s); bool canS=can_S(s); bool canW=can_W(s);
 	tprint("You can go", //this can so be optimized! Think about it later
-	/* N"    : (can_N(s))                                         ? ""),
-	(",",    : (can_N(s) && (can_E(s) || can_S(s) || can_W(s)))   ? ""),
-	(" or",  : (can_N(s) && (!can_W(s) && !can_S(s) && can_E(s))) ? ""),
-	(" E"    : (can_E(s))                                         ? ""),
-	(",",    : (can_E(s) && (can_S(s), can_W(s)))                 ? ""),
-	(" or "  : (can_E(s) && (!can_W(s) && can_S(s)))              ? ""),
-	(" S"    : (can_S(s))                                         ? ""),
-	(", or " : (can_S(s) && can_W(s))                             ? ""),
-	(" W"    : (can_W(s))                                         ? ""),
-	(" neither N, E, S, or W" : (!can_N(s) && !can_W(s) && !can_S(s) && !can_E(s)) ? ""),*/
+	((canN)                            ? " N"    : ""),
+	((canN && (canE || canS || canW))  ? ","     : ""),
+	((canN && (!canW && !canS && canE))? " or"   : ""),
+	((canE)                            ? " E"    : ""),
+	((canE && (canS, canW))            ? ","     : ""),
+	((canE && (!canW && canS))         ? " or "  : ""),
+	((canS)                            ? " S"    : ""),
+	((canS && canW)                    ? ", or " : ""),
+	((canW)                            ?  " W"   : ""),
+	((!canN && !canW && !canS && !canE)?" neither N, E, S, or W" : ""),
 	".");
 }
+
 	
 void Room::catch_wrong_room(State &s)
 {

@@ -13,12 +13,13 @@ class Room
 { 
 private: 
     std::string name;
+	
+	std::string default_no = "You cannot go that way.";
 
+protected:
 	int room_state = 0; //the "current" state of the room, used in internal logic
 	
 	void print_dirs(State &s);
-	
-	std::string default_no = "You cannot go that way.";
 	
 	void catch_wrong_room(State &s);
 	
@@ -82,6 +83,7 @@ public:
 	RoomContainer(); //default room constructor 
         
 	//init all of the room derived classes and add to the vector
+	//define yourself, with your game's rooms
 	//called during game initialization
 	void initialize();
         

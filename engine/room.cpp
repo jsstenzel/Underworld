@@ -5,8 +5,6 @@
 #include <engine/room.h>
 #include <engine/state.h>
 
-//#include everything in room_defs
-
 #include <string>
 #include <vector>
 
@@ -26,7 +24,6 @@ void Room::print_dirs(State &s)
 	((!canN && !canW && !canS && !canE)?" neither N, E, S, or W" : ""),
 	".");
 }
-
 	
 void Room::catch_wrong_room(State &s)
 {
@@ -83,26 +80,6 @@ void Room::set_adj(Room *north, Room *east, Room *south, Room *west, Room *other
 }
 
 
-
-
-void RoomContainer::initialize()
-{
-        RoomNull r_Null;
-
-        RoomLetheCave r_LetheCave;
-		RoomMnemosynePool r_MnemosynePool;
-		RoomThreshold r_Threshold;
-		RoomCharonDock r_CharonDock;
-		RoomErinyePass r_ErinyePass;
-		RoomAvernusCave r_AvernusCave;
-		
-		//etc.
-		
-		//once everything is in the container,
-		//fail loud if two room names are the same
-}
-
-
 void RoomContainer::set_all_adjacency()
 {		
 	for (auto & room : rooms)
@@ -116,7 +93,10 @@ void RoomContainer::set_all_adjacency()
 				this->find(room.init_west), 
 				this->find(room.init_other));
 		}
-		catch { tprint("You failed set_all_adjacency() for room ",room.get_name());}
+		catch (...)
+		{ 
+			tprint("You failed set_all_adjacency() for room ",room.get_name());
+		}
 	}
 }
 

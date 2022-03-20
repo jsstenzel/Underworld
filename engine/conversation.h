@@ -1,10 +1,11 @@
-#ifnded CONVERSATION_H
+#ifndef CONVERSATION_H
 #define CONVERSATION_H
 
 #include <engine/utils.h>
 #include <str>
-#define str std::str
-#define vec std::vector
+
+//TODO: I'm not sure if this architecture can support re-connecting of conversation branches. 
+//If not, I need to also implement a conversation directed graph that can handle that.
 
 //A conversation is a binary tree of [dialog and logic]
 //logic can be simple, like True, or it can be state-dependent, like has_torch
@@ -16,9 +17,9 @@
 struct ConvoNode {
 private:
 	//the speaker that is cprinted when this node is reached
-	str speaker;
+	std::string speaker;
 	//the line that is cprinted when this node is reached
-	str line;
+	std::string line;
 	//whether the tree proceeds left or right; expects a boolean or a ConvoChoice
 	bool logic;
  
@@ -27,11 +28,11 @@ protected:
 	struct ConvoNode* right;
 	
 	//these are used by the Conversation executer if theyre nonempty
-	str choice1 = "";
-	str choice2 = "";
+	std::string choice1 = "";
+	std::string choice2 = "";
 
 	//this constructor is used only by add_node
-	ConvoNode(str set_speak, str set_line, bool set_logic)
+	ConvoNode(std::string set_speak, std::string set_line, bool set_logic)
 	{
 		speaker = set_speak, 
 		line = set_line;
@@ -44,7 +45,7 @@ protected:
 	}
 	
 	//This constructor is used only by add_choice
-	ConvoNode(str set_speak, str set_line, str c1, str c2)
+	ConvoNode(std::string set_speak, std::string set_line, std::string c1, std::string c2)
 	{
 		speaker = set_speak, 
 		line = set_line;
@@ -58,14 +59,14 @@ protected:
 		right = NULL;
 	}
 	
-	str get_speak() { return speaker; }
-	str get_line()  { return line; }
-	str get_logic() { return logic; }
-	str get_1()	   { return choice1; }
-	str get_2()	   { return choice2; }
+	std::string get_speak() { return speaker; }
+	std::string get_line()  { return line; }
+	std::string get_logic() { return logic; }
+	std::string get_1()	    { return choice1; }
+	std::string get_2()	    { return choice2; }
 };
 
-bool ConvoChoice(str choice1, str choice2)
+bool ConvoChoice(std::string choice1, std::string choice2)
 {
 	//convert both strs to all lowercase
 	
@@ -74,6 +75,7 @@ bool ConvoChoice(str choice1, str choice2)
 	{
 		//receive choice
 		tprint("> ");
+		std::string choice;
 		std::cin >> choice;
 		//convert to all lowercase
 		
@@ -95,7 +97,7 @@ public:
 	//Add a node to this conversation, with branching based on boolean
 	//Returns the node you just added
 	//Use that to add additional nodes
-	ConvoNode* add_node(ConvoNode* parent, str speaker, str line, LeftorRight = "R", bool logic = true)
+	ConvoNode* add_node(ConvoNode* parent, std::string speaker, std::string line, LeftorRight = "R", bool logic = true)
 	{
 		if root == NULL and parent == NULL
 		{
@@ -130,7 +132,7 @@ public:
 	
 	//Add a node to this conversation, with branching based on binary choice
 	//to actually add the two results of these choices, use the returned pointer
-	ConvoNode* add_choice(ConvoNode& parent, str speaker, str line, str choice1, str choice2, LeftorRight = "R")
+	ConvoNode* add_choice(ConvoNode& parent, std::string speaker, std::string line, std::string choice1, std::string choice2, LeftorRight = "R")
 	{
 		if root == NULL
 		{
@@ -193,7 +195,7 @@ public:
 /*
 Here's what an implementation in a Room's parser_catch() would look like
 
-RoomOdysseusShip::parser_catch(vector<Token> ins)
+RoomOdysseusShip::parser_catch(std::vector<Token> ins)
 {
 	if ins[1] == tTalk and ins[2] == tOdysseus
 	{

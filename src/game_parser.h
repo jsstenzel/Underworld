@@ -8,16 +8,14 @@
 
 #include <string>
 #include <vector>
-#define str std::string
-#define vec std::vector
 //do all of this with virtual functions, implement with game_parser
 
 class GameParser : public Parser
 {
 private:
-	bool parse_common(State &s, vec<Tk> in);
+	bool parse_common(State &s, std::vector<Tk> in);
 	
-	void parse_default(State &s, vec<Tk> in);
+	void parse_default(State &s, std::vector<Tk> in);
 	
 	void cleanup(State &s);
 

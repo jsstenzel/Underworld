@@ -5,16 +5,14 @@
 #include <string>
 #include <vector>
 #include <sstream>
-#define str std::string
-#define vec std::vector
 
-vec<Tk> tokenize_string(str input)
+std::vector<Tk> tokenize_string(std::string input)
 {
 	//break string into space-delimited words
 	std::stringstream ss;
 	
 	//map words to tokens, handling synonyms
-	vec<Tk> in;
+	std::vector<Tk> in;
 	
 	//map unknown words to Tk::Null
 	//and fill the end with a couple Tk::Null's 

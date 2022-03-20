@@ -6,21 +6,19 @@
 
 #include <string>
 #include <vector>
-#define str std::string
-#define vec std::vector
 
 class State;
 
 class Room 
 { 
 private: 
-    str name;
+    std::string name;
 
 	int room_state = 0; //the "current" state of the room, used in internal logic
 	
 	void print_dirs(State &s);
 	
-	str default_no = "You cannot go that way.";
+	std::string default_no = "You cannot go that way.";
 	
 	void catch_wrong_room(State &s);
 	
@@ -34,18 +32,18 @@ private:
 public: 
 	Room(); //default room constructor 
 
-	Room(str n) //construct with name
+	Room(std::string n) //construct with name
 	: name(n)
 	{}
 	
-	str get_name() { return name; }
+	std::string get_name() { return name; }
 	
 	//used by RoomContainer for construct()
-	const str init_north = "";
-	const str init_east = "";
-	const str init_south = "";
-	const str init_west = "";
-	const str init_other = "";
+	const std::string init_north = "";
+	const std::string init_east = "";
+	const std::string init_south = "";
+	const std::string init_west = "";
+	const std::string init_other = "";
 	
 	//Sets the new current room; 0 indicates you can't go that way
 	//These functions should only be called by the parser
@@ -68,7 +66,7 @@ public:
 	
 	//returns nonzero if it caught something
 	//this should be called by the derived class's parser_catch
-	virtual int parser_catch(State &s, vec<Tk> in);
+	virtual int parser_catch(State &s, std::vector<Tk> in);
 
 	//set during RoomContainer::set_all_adjacency()
 	void set_adj(Room *north, Room *east, Room *south, Room *west, Room *other);
@@ -78,7 +76,7 @@ public:
 class RoomContainer
 {
 private:
-	vec<Room> rooms;
+	std::vector<Room> rooms;
 	
 public:
 	RoomContainer(); //default room constructor 
@@ -92,7 +90,7 @@ public:
 	void set_all_adjacency();
         
 	//return a room ref based on its name
-	Room* find(str search_name);
+	Room* find(std::string search_name);
 };
 
 #endif

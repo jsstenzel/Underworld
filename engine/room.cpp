@@ -9,10 +9,8 @@
 
 #include <string>
 #include <vector>
-#define str std::string
-#define vec std::vector
 
-void print_dirs(State &s)
+void Room::print_dirs(State &s)
 {
 	bool canN=can_N(s); bool canE=can_E(s); bool canS=can_S(s); bool canW=can_W(s);
 	tprint("You can go", //this can so be optimized! Think about it later
@@ -69,7 +67,7 @@ char Room::can_E(State &s) { return r_east != NULL; }
 char Room::can_S(State &s) { return r_south != NULL; }
 char Room::can_W(State &s) { return r_west != NULL; }
 
-int Room::parser_catch(State &s, vec<Tk> in) 
+int Room::parser_catch(State &s, std::vector<Tk> in) 
 { return 0; } 
 
 void Room::print_room(State& s)
@@ -123,7 +121,7 @@ void RoomContainer::set_all_adjacency()
 }
 
 //return a room object based on its unique name
-Room* RoomContainer::find(str search_name)
+Room* RoomContainer::find(std::string search_name)
 {
 	if (search_name == "") {return NULL;}
 	

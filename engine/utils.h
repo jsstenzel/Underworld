@@ -4,10 +4,9 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#define str std::string
 
 //formatted terminal printing of one string
-void tprint_1(str out)
+void tprint_1(std::string out)
 {
 	////first, format the string so that the max width is 80 characters and words aren't split on a line
 	
@@ -27,10 +26,10 @@ void tprint_1(str out)
 }
 
 //nice conversation-formatted terminal printing of one string
-void cprint_1(str name, str out)
+void cprint_1(std::string name, std::string out)
 {
 	//convert name to all caps
-	str NAME = name;
+	std::string NAME = name;
 	
 	std::cout << NAME << std::endl;
 	
@@ -74,7 +73,7 @@ void tprint(Args&&... a_args)
 
 //nice conversation-formatted terminal printing of one string
 template<typename... Args>
-void cprint(str name, Args&&... a_args)
+void cprint(std::string name, Args&&... a_args)
 {
     std::stringstream s;
     addToStream(s, std::forward<Args>(a_args)...);

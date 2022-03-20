@@ -2,7 +2,7 @@
 #include <src/game_parser.h>
 
 
-bool GameParser::parse_common(State &s, vec<Tk> in)
+bool GameParser::parse_common(State &s, std::vector<Tk> in)
 {
 	//SAVE
 	
@@ -41,17 +41,23 @@ bool GameParser::parse_common(State &s, vec<Tk> in)
 	{ 
 		s.current_room()->go_W(s); return true;
 	}
+	
+	//default
+	return false;
 }
 
-void GameParser::parse_default(State &s, vec<Tk> in)
+void GameParser::parse_default(State &s, std::vector<Tk> in)
 {
 	/////Handle default commands
 	
 	
 	/////Handle unknown commands for the rest of the function
-	if (check(in,Tk::Go)) { tprint("You don't know how to go there."); return; }
-	if (check(in,Tk::Take)) { tprint("You don't know how to take that."); return; }
-	if (check(in,Tk::Look)) { tprint("You don't see anything like that around here."); return; }
+	if (check(in,Tk::Go,Tk::ANY)) { tprint("You don't know how to go there."); return; }
+	if (check(in,Tk::Take,Tk::ANY)) { tprint("You don't know how to take that."); return; }
+	if (check(in,Tk::Look,Tk::ANY)) { tprint("You don't see anything like that around here."); return; }
+	
+	if (check(in,Tk::Go)) { tprint("Go where? Maybe you should look around again."); return; }
+	if (check(in,Tk::Take)) { tprint("Take what?"); return; }
 }
 
 void GameParser::cleanup(State &s)

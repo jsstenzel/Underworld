@@ -5,11 +5,11 @@ void Parser::parse(State &s)
 { 
 //get input from user
 	tprint("> ");
-	str input;
+	std::string input;
 	std::cin >> input;
 
 	//convert to tokens
-	vec<Tk> in = tokenize_string(input);
+	std::vector<Tk> in = tokenize_string(input);
 
 	//switch over common commands
 	bool parse_result = this->parse_common(s, in);

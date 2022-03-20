@@ -55,7 +55,7 @@ enum class TkType
 	ANY       //i.e. any type
 };
 
-bool check(vec<Tk> in, Tk word1, Tk word2 = Tk::Null, Tk word3 = Tk::Null)
+bool check(std::vector<Tk> in, Tk word1, Tk word2 = Tk::Null, Tk word3 = Tk::Null)
 {
 	//return true if in matches the args
 	//also allow missing vector elements to equal Null

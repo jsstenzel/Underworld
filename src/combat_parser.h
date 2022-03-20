@@ -6,7 +6,7 @@
 #import <engine/room.h>
 
 #include <string>
-#define str std::string
+#define std::string std::string
 
 //A combat is a smaller game loop embedded in the larger one
 //It uses its own parser, the CombatParser, with a restricted set of commands
@@ -20,7 +20,7 @@ public:
 	: Room("")
 	
 	//expose name setting
-	void set_name(str newname) { this->name = newname; }
+	void set_name(std::string newname) { this->name = newname; }
 
 	void print_room(State s) 
 	{ 
@@ -29,7 +29,7 @@ public:
 	}	
 	
 	//Purposefully sparse parser_catch, so that most combat logic is in CombatParser
-	virtual int parser_catch(State s, vector<Token> in)
+	virtual int parser_catch(State s, std::vector<Token> in)
 	{ 
 		if in[0] == tLook and (in[1] == tNull or in[1] == tRoom)
 		{ 
@@ -78,7 +78,7 @@ public:
 		s.update_room(r_Combat);
 	}
 	
-	bool parse_common(State s, vector<Token> in)
+	bool parse_common(State s, std::vector<Token> in)
 	{		
 		//SAVE
 		
@@ -92,7 +92,7 @@ public:
 	}
 	
 	//use this in derived classes to define combat-specific logic
-	virtual void parse_default(State s, vector<Token> in);
+	virtual void parse_default(State s, std::vector<Token> in);
 	
 	//use this however you want; to implement the enemy's turn, maybe
 	virtual void cleanup(State s);

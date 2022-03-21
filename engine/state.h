@@ -22,8 +22,6 @@ public:
 	Room* current_room() { return curr_room; }
 	
 	Room* update_room(Room* newroom);
-	
-	bool can_swim = false; //obviously i need to fix this stupid thing
 };
 
 #endif

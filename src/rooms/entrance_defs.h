@@ -83,8 +83,8 @@ public:
 		tprint("You cannot go that way. There is only a rushing river, and beyond that a rocky cave wall."); return 0;
 	}
 	
-	char can_N(State s) { return s.can_swim; }
-	char can_S(State s) { return s.can_swim; }
+	char can_N(State s) { return s.data["hasPoppy"]; }
+	char can_S(State s) { return s.data["hasPoppy"]; }
 	
 	int parser_catch(State s, std::vector<Tk> v_in)
 	{

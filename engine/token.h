@@ -15,6 +15,6 @@ enum class TkType;
 std::vector<Tk> tokenize_string(std::string input);
 
 //find and return the type of a token
-TkType token_type(Tk tok);
+TkType get_token_type(Tk tok);
 
 #endif

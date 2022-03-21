@@ -4,7 +4,6 @@
 //implement specific tokens
 #include <engine/token.h>
 
-
 enum class Tk
 {
 	Null = 0, //an empty token, semantically empty
@@ -40,7 +39,8 @@ enum class Tk
 	Wall,
 	Floor,
 	Ceiling,
-	ANY //wildcard token
+	ANY, //wildcard token
+	ALL  //ANY including Null
 };
 
 enum class TkType
@@ -55,27 +55,6 @@ enum class TkType
 	ANY       //i.e. any type
 };
 
-bool check(std::vector<Tk> in, Tk word1, Tk word2 = Tk::Null, Tk word3 = Tk::Null)
-{
-	//return true if in matches the args
-	//also allow missing vector elements to equal Null
-	//also handle Any. But Null does not match Any!
-	int len = in.size();
-	if (len == 0) return (word1 == Tk::Null);
-	else if (len == 1)
-	{
-		if ((word1 == in[1] || word1 == Tk::ANY) && word2 == Tk::Null && word3 == Tk::Null) return true;
-	}	
-	else if (len == 2)
-	{
-		if ((word1 == in[1] || word1 == Tk::ANY) && (word2 == in[2] || word2 == Tk::ANY) && word3 == Tk::Null) return true;
-	}	
-	else if (len == 3)
-	{
-		if ((word1 == in[1] || word1 == Tk::ANY) && (word2 == in[2] || word2 == Tk::ANY) && (word3 == in[3] || word3 == Tk::ANY)) return true;
-	}	
-	else return false;
-	return false;
-}
+bool check(std::vector<Tk> in, Tk word1, Tk word2=Tk::Null, Tk word3=Tk::Null);
 
 #endif

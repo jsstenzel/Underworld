@@ -1,6 +1,6 @@
 :: Run with the Developer Command Prompt for VS
 cd ..
-set COREFILES=engine\room.cpp engine\state.cpp engine\parser.cpp
+set COREFILES=engine\room.cpp engine\state.cpp engine\parser.cpp engine\utils.cpp
 set SRCFILES=src\main.cpp src\token.cpp src\game_parser.cpp
 set INCLUDES="."
 set EXENAME=Underworld

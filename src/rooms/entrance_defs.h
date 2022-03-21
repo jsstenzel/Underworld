@@ -1,6 +1,8 @@
 #include <engine/room.h>
 #include <engine/utils.h>
 
+#include <src/game_state.h>
+
 #include <string>
 #include <vector>
 
@@ -25,7 +27,7 @@ class RoomLetheCave : Room
 private:
 	const std::string init_north = "Lethe Mouth";
 	const std::string init_east = "Threshold";
-	const std::string init_south = "Mnemosyne Cave";
+	const std::string init_south = "Mnemosyne's Pool";
 
 public: 
 	RoomLetheCave() 
@@ -95,9 +97,9 @@ public:
 class RoomThreshold : Room 
 { 
 private:
-	const std::string init_east = "CharonDock";
+	const std::string init_east = "Charon's Dock";
 	const std::string init_south = "Erinye Pass";
-	const std::string init_west = "LetheCave";
+	const std::string init_west = "Lethe Cave";
 
 public: 
 	RoomThreshold() 
@@ -115,6 +117,66 @@ public:
 	int parser_catch(State s, std::vector<Tk> v_in)
 	{
 		return 0;
+	}
+
+};
+
+class RoomMnemosynePool : Room 
+{ 
+public: 
+	RoomMnemosynePool() 
+	: Room{"Mnemosyne's Pool"}
+	{}
+
+	void print_room(State& s)
+	{
+		tprint("Uh-oh! You're in the null room. Classic mistake.");
+		s.game_loop = false;
+	}
+
+};
+
+class RoomCharonDock : Room 
+{ 
+public: 
+	RoomCharonDock() 
+	: Room{"Charon's Dock"}
+	{}
+
+	void print_room(State& s)
+	{
+		tprint("Uh-oh! You're in the null room. Classic mistake.");
+		s.game_loop = false;
+	}
+
+};
+
+class RoomErinyePass : Room 
+{ 
+public: 
+	RoomErinyePass() 
+	: Room{"Erinye Pass"}
+	{}
+
+	void print_room(State& s)
+	{
+		tprint("Uh-oh! You're in the null room. Classic mistake.");
+		s.game_loop = false;
+	}
+
+};
+
+class RoomAvernusCave : Room 
+{ 
+public: 
+	RoomAvernusCave() 
+	: Room{"Avernus Cave"}
+	{}
+
+	void print_room(State& s)
+	{
+		tprint("Uh-oh! You're in the null room. Classic mistake.");
+		s.game_loop = false;
 	}
 
 };

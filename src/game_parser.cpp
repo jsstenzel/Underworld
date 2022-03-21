@@ -58,6 +58,9 @@ void GameParser::parse_default(State &s, std::vector<Tk> in)
 	
 	if (check(in,Tk::Go)) { tprint("Go where? Maybe you should look around again."); return; }
 	if (check(in,Tk::Take)) { tprint("Take what?"); return; }
+	
+	if (get_token_type(in[1]) != TkType::Verb && (check(in,Tk::ANY,Tk::ANY) || check(in,Tk::ANY,Tk::ANY,Tk::ANY)))
+	{ tprint("Your thoughts are unclear. Try starting commands with a verb."); return; }
 }
 
 void GameParser::cleanup(State &s)

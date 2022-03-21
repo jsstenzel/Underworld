@@ -6,7 +6,7 @@
 #include <vector>
 #include <sstream>
 
-bool check(std::vector<Tk> in, Tk word1, Tk word2=Tk::Null, Tk word3=Tk::Null)
+bool check(std::vector<Tk> in, Tk word1, Tk word2, Tk word3)
 {
 	//return true if in matches the args
 	//also allow missing vector elements to equal Null

@@ -16,16 +16,17 @@ private:
 	bool parse_found = false;
 	
 	//run before room parser; commands common to all rooms
-	virtual bool parse_common(State &s, std::vector<Tk> in);
+	virtual bool parse_common(State &s, std::vector<Tk> in) = 0;
 	
 	//run after room parser; commands default to all rooms
-	virtual void parse_default(State &s, std::vector<Tk> in);
+	virtual void parse_default(State &s, std::vector<Tk> in) = 0;
 	
 	//commands to run at the end of each game loop
-	virtual void cleanup(State &s);
+	virtual void cleanup(State &s) = 0;
 	
 public:
-	Parser();
+	Parser()
+	{}
 
 	void parse(State &s);
 }; 

@@ -80,7 +80,8 @@ private:
 	std::vector<Room> rooms;
 	
 public:
-	RoomContainer(); //default room constructor 
+	RoomContainer() //default room constructor 
+	{}
         
 	//init all of the room derived classes and add to the vector
 	//define yourself, with your game's rooms

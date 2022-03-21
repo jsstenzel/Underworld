@@ -12,14 +12,14 @@ void Parser::parse(State &s)
 	std::vector<Tk> in = tokenize_string(input);
 
 	//switch over common commands
-	bool parse_result = this->parse_common(s, in);
+	bool parse_result = parse_common(s, in);
 
 	//let the room parser catch first
 	if (!parse_result) { parse_result = s.current_room()->parser_catch(s, in); }
 
 	//switch over default commands true in any room
 	//include handling for unknown commands
-	if (!parse_result) { this->parse_default(s, in); }
+	if (!parse_result) { parse_default(s, in); }
 
-	this->cleanup(s);
+	cleanup(s);
 }

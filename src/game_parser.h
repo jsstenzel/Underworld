@@ -12,6 +12,11 @@
 
 class GameParser : public Parser
 {
+public:
+	GameParser() :
+	Parser()
+	{}
+	
 private:
 	bool parse_common(State &s, std::vector<Tk> in);
 	
